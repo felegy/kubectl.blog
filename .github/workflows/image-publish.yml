@@ -50,8 +50,8 @@ jobs:
           --workspace /app;
     - name: Tag Docker image to ref
       run: |
-        docker tag ghcr.io/felegy/kubectl.blog:$TAG ghcr.io/felegy/kubectl.blog:$REF
+        docker tag ghcr.io/felegy/kubectl-blog:$TAG ghcr.io/felegy/kubectl-blog:$REF
     - name: Docker push
       run: |
-        docker push ghcr.io/felegy/kubectl.blog:$TAG
-        docker push ghcr.io/felegy/kubectl.blog:$REF
+        docker push ghcr.io/felegy/kubectl-blog:$TAG
+        docker push ghcr.io/felegy/kubectl-blog:$REF
