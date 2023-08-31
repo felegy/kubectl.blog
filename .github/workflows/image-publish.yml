@@ -17,7 +17,7 @@ on:
 env:
   DESCRIPTION: "Word press Heroku App Image https://kubectl.blog"
   IMAGE_NAME: "ghcr.io/felegy/kubectl.blog"
-  BUILDER: "heroku/builder:22"
+  BUILDER: "heroku/builder-classic:22"
 jobs:
   pack-build:
     name: Pack Build and Publish!
