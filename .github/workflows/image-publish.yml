@@ -17,6 +17,7 @@ on:
 env:
   DESCRIPTION: "Word press Heroku App Image https://kubectl.blog"
   IMAGE_NAME: "ghcr.io/felegy/kubectl.blog"
+  BUILDER: "heroku/builder:22"
 jobs:
   pack-build:
     name: Pack Build and Publish!
@@ -49,7 +50,7 @@ jobs:
         [[ ! -z  $(yq e '. | keys' Procfile | cut -c 3- | grep bash) ]] \
         || echo 'bash: bash -l' >> Procfile
         pack build "$IMAGE_NAME:$TAG" \
-          --builder heroku/buildpacks:20 \
+          --builder $BUILDER \
           --descriptor project.toml \
           --workspace /app;
     - name: Tag Docker image to ref
