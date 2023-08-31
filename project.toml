@@ -1,0 +1,12 @@
+api = "0.4"
+
+[build]
+include = [
+    ".profile.d",
+    "Procfile",
+    "config",
+    "web",
+    "wp-cli.yml",
+    "composer.json",
+    "composer.lock"
+]
