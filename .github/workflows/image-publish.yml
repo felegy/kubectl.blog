@@ -15,8 +15,8 @@ on:
     branches: [ "main" ]
 
 env:
-  DESCRIPTION: "Wordpress Heroku App Image https://kubectl.blog"
-
+  DESCRIPTION: "Word press Heroku App Image https://kubectl.blog"
+  IMAGE_NAME: "ghcr.io/felegy/kubectl.blog"
 jobs:
   pack-build:
     name: Pack Build and Publish!
@@ -44,14 +44,14 @@ jobs:
       run: |
         [[ ! -z  $(yq e '. | keys' Procfile | cut -c 3- | grep bash) ]] \
         || echo 'bash: bash -l' >> Procfile
-        pack build "ghcr.io/felegy/kubectl-blog:$TAG" \
+        pack build "$IMAGE_NAME:$TAG" \
           --builder heroku/buildpacks:20 \
           --descriptor project.toml \
           --workspace /app;
     - name: Tag Docker image to ref
       run: |
-        docker tag ghcr.io/felegy/kubectl-blog:$TAG ghcr.io/felegy/kubectl-blog:$REF
+        docker tag $IMAGE_NAME:$TAG $IMAGE_NAME:$REF
     - name: Docker push
       run: |
-        docker push ghcr.io/felegy/kubectl-blog:$TAG
-        docker push ghcr.io/felegy/kubectl-blog:$REF
+        docker push $IMAGE_NAME:$TAG
+        docker push $IMAGE_NAME:$REF
